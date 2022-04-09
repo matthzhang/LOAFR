@@ -1,6 +1,8 @@
 import java.util.Objects;
 
 public class DataEntry {
+
+    // FIELDS ----------------------------------------------------------------------------------------------------------
     private String product;
     private String date;
     private String component;
@@ -8,6 +10,7 @@ public class DataEntry {
     private DataField[] fields;
     private int numFields;
 
+    // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public DataEntry(String product, String date, String component, String timeStamp){
         this.product = product;
         this.date = date;
@@ -17,17 +20,13 @@ public class DataEntry {
         numFields = 0;
     }
 
-    public void addField(String name, String value){
-        fields[numFields++] = new DataField(name, value);
-
+    // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
+    public String getDate(){
+        return date;
     }
 
     public String getProduct(){
         return product;
-    }
-
-    public String getDate(){
-        return date;
     }
 
     public String getComponent(){
@@ -36,6 +35,12 @@ public class DataEntry {
 
     public String getTimeStamp(){
         return timeStamp;
+    }
+
+    // METHODS ---------------------------------------------------------------------------------------------------------
+    public void addField(String name, String value){
+        fields[numFields++] = new DataField(name, value);
+
     }
 
     public boolean hasField(String field){

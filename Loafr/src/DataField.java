@@ -1,12 +1,16 @@
 public class DataField {
-    String name;
-    String value;
 
+    // FIELDS ----------------------------------------------------------------------------------------------------------
+    private String name;
+    private String value;
+
+    // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public DataField(String name, String value){
         this.name = name;
         this.value = value;
     }
 
+    // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
     public void setName(String name){
         this.name = name;
     }

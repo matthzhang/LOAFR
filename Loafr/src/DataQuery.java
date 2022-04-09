@@ -1,26 +1,14 @@
-public class DataQuery{
+public abstract class DataQuery{
 
 
-    // FIELDS ------------------------------------------------------------------------------------------------------------------------
+    // FIELDS ----------------------------------------------------------------------------------------------------------
     private int testID; //
     private boolean priority;
 
 
-
-
-
-
-
-
-
-
-
-
-
-    // CONSTRUCTORS ------------------------------------------------------------------------------------------------------------------------
+    // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public DataQuery(){
     }
-
 
     public DataQuery(int test_id){
         testID = test_id;
@@ -31,15 +19,7 @@ public class DataQuery{
         priority = testPriority;
     }
 
-
-
-
-
-
-
-
-
-    // SETTERS & GETTERS ---------------------------------------------------------------------------------------------------------------
+    // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
     public boolean isPriority(){
         return priority;
     }
@@ -52,10 +32,19 @@ public class DataQuery{
         priority = b;
     }
 
+
+    // METHODS ---------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
         return "to do" + "\n";
     }
+
+
+    // ABSTRACT METHODS ------------------------------------------------------------------------------------------------
+    public abstract int searchByComponent(Database data);
+    public abstract int searchByField(Database data);
+    public abstract int searchByTime(Database data);
+
 
 } // end of class  (other ideas below)
 

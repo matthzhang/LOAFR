@@ -1,106 +1,71 @@
-import java.util.ArrayList;
 
-public class searchQuery extends DataQuery{
+public class SearchQuery extends DataQuery{
 
+    // FIELDS ----------------------------------------------------------------------------------------------------------
+    private String searchTarget;
 
-    // FIELDS --------------------------------------------------------------------------------------------
-    private int targetValue;
-    private ArrayList<logEntry> searchResults;
-
-
-
-
-
-
-
-    // CONSTRUCTORS --------------------------------------------------------------------------------------------
-    public searchQuery(){
+    // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
+    public SearchQuery (String target){
+        searchTarget = target;
     }
 
-    // constructor that sets value for fields (only 1 field in this case, non-inherited)
-    public searchQuery(int searchValue){
-        searchResults = new ArrayList<logEntry>();
-        targetValue = searchValue;
+    // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
+    public String getSearchTarget(){
+        return searchTarget;
     }
 
-    // constructor with use of super
-    // (sets values for local fields and the inherited fields
-    // (local field being 'amount' and inherited being 'date' and 'customer'
-    public searchQuery(int test_id, boolean tPriority, int searchTarget){
-        super(test_id, tPriority); // sets the inherited field values using the parents 2-arg constructor
-        targetValue = searchTarget;
-        searchResults = new ArrayList<logEntry>();
+    public void setSearchTarget(String target){
+        searchTarget = target;
     }
 
-
-
-
-
-
-    // METHODS: --------------------------------------------------------------------------------------------
-
-    // search all test data by 'int'
-    public void searchAllTestData(String componentName, int targetVal){
-        // increment each search match to our 'searchResult' private list
+    // METHODS ---------------------------------------------------------------------------------------------------------
+    public int searchByComponent(Database data){
+        data.clearDisplayData();
+        int entries = data.getNumEntries();
+        int totalFound = 0;
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i);
+            String component = entry.getComponent();
+            if (searchTarget.equals(component)){
+                data.addToDisplayed(i);
+                totalFound++;
+            }
+        }
+        return totalFound;
     }
 
-    // search all test data by 'string'
-    public void searchAllTestData(String componentName, String targetVal){
-        // increment each search match to our 'searchResult' private list
+    public int searchByField(Database data){
+        data.clearDisplayData();
+        int entries = data.getNumEntries();
+        int totalFound = 0;
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i);
+            if (entry.hasField(searchTarget)){
+                data.addToDisplayed(i);
+                totalFound++;
+            }
+        }
+        return totalFound;
     }
 
-
-    // search component data by 'int'
-    public void searchWithinComponentData(String componentName, int targetVal){
-        // increment each search match to our 'searchResult' private list
-    }
-
-    // search component data by 'string'
-    public void searchWithinComponentData(String componentName, String targetVal){
-        // increment each search match to our 'searchResult' private list
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // SETTERS & GETTERS --------------------------------------------------------------------------------------------
-
-    public void setTargetValue(int target){
-        targetValue = target;
-    }
-
-    public void printSearchResults(){
-        for (int i = 0; i < searchResults.size(); i++) {
-            System.out.println("MATCH #"+(i+1)+": "+(searchResults.get(i))+" \n");
-        } // end of loop
-    }
-
-    public int getTargetValue(){
-        return targetValue;
+    public int searchByTime(Database data){
+        data.clearDisplayData();
+        int entries = data.getNumEntries();
+        int totalFound = 0;
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i);
+            String time = entry.getTimeStamp();
+            if (searchTarget.equals(time)){
+                data.addToDisplayed(i);
+                totalFound++;
+            }
+        }
+        return totalFound;
     }
 
 
 
 
-
-    @Override
-    public String toString() {
-        return "DataQuery type: SEARCH " + "\n" +
-                "Test ID: ........." + getTestID() + "\n" +
-                "High Priority? " + isPriority() +"\n"+
-                "Target Search Value: " + targetValue +"\n";
-    }
 
 } // end of class  (other ideas below)
 

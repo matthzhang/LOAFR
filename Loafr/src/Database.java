@@ -2,18 +2,31 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Database {
+
+    // FIELDS ----------------------------------------------------------------------------------------------------------
     private DataEntry[] allData;
     private DataEntry[] displayedData;
     private String[] categories;
     private int numEntries;
     private int numDisplayed;
 
+    // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public Database(String filename) throws FileNotFoundException {
         ReadFile(filename);
         displayedData = allData;
         numDisplayed = numEntries;
     }
 
+    // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
+    public int getNumEntries(){
+        return numEntries;
+    }
+
+    public DataEntry getEntry(int index){
+        return allData[index];
+    }
+
+    // METHODS ---------------------------------------------------------------------------------------------------------
     public void ReadFile(String filename) throws FileNotFoundException {
         Scanner s = new Scanner(new File(filename)); // open file to read in content
         s.useDelimiter(","); // split file by ','
@@ -65,7 +78,7 @@ public class Database {
             s += categories[i] + "\t\t";
         }
         s += "\n";
-        for (int i = 0; i < displayedData.length; i++){
+        for (int i = 0; i < numDisplayed; i++){
             s += displayedData[i].getProduct() + "\t\t\t";
             s += displayedData[i].getDate() + "\t\t";
             s += displayedData[i].getComponent() + "\t\t";
@@ -92,12 +105,9 @@ public class Database {
         displayedData[numDisplayed++] = allData[index];
     }
 
-    public int getNumEntries(){
-        return numEntries;
-    }
-
-    public DataEntry getEntry(int index){
-        return allData[index];
+    public void resetView(){
+        displayedData = allData;
+        numDisplayed = numEntries;
     }
 
 }
