@@ -4,20 +4,28 @@ public abstract class DataQuery{
     // FIELDS ----------------------------------------------------------------------------------------------------------
     private int testID; //
     private boolean priority;
+    private String[] timeWindow;
+
 
 
     // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public DataQuery(){
+        timeWindow = new String[2];
     }
 
     public DataQuery(int test_id){
         testID = test_id;
+        timeWindow = new String[2];
     }
 
     public DataQuery(int test_id, boolean testPriority){
         testID = test_id;
         priority = testPriority;
+        timeWindow = new String[2];
     }
+
+
+
 
     // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
     public boolean isPriority(){
@@ -32,6 +40,14 @@ public abstract class DataQuery{
         priority = b;
     }
 
+    public void setTimeWindow(String start, String end){
+        timeWindow[0] = start;
+        timeWindow[1] = end;
+    }
+
+    public String[] getTimeWindow() {
+        return timeWindow;
+    }
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     @Override
@@ -40,7 +56,7 @@ public abstract class DataQuery{
     }
 
 
-} // end of class  (other ideas below)
+} // end of class 
 
 
 
