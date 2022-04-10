@@ -75,4 +75,17 @@ public class DataEntry {
         }
         return fields[index].getValue();
     }
+
+    // create a string of a single DataEntry
+    public String getWholeEntry(){
+        String s = "";
+        s += product;
+        s += ", " + date;
+        s += ", " + component;
+        s += ", " + timeStamp;
+        for (int i = 0; i < numFields; i++){
+            s += ", " + getFieldValue(i);
+        }
+        return s;
+    }
 }
