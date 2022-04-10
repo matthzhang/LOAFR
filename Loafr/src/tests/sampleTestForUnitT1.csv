@@ -1,4 +1,4 @@
-number-of-entries,27,number-of-categories,10,time-of-day,12:05,test-duration,4,,,
+number-of-entries,15,number-of-categories,10,time-of-day,12:05,test-duration,2,,,
 ,,,,,,,,,,
 name of product,date,component,time-stamp,heat-degree,insulin %,alert status,sugar-kg,glucose-mg,blockage,
 iMedPump,1/25/20,system,0.00,100.0,80.0,low,,,,
