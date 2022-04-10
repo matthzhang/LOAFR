@@ -7,7 +7,7 @@ public class DataEntry {
     private String date;
     private String component;
     private String timeStamp;
-    private DataField[] fields;
+    private DataField[] fields; // hold the various fields that a dataEntry may have
     private int numFields;
 
     // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
@@ -43,6 +43,8 @@ public class DataEntry {
 
     }
 
+    // check if DataEntry contains a field by passing a String name of a field
+    // return true if DataEntry contains the field or false if it does not
     public boolean hasField(String field){
         for (int i = 0; i < fields.length && fields[i] != null; i++){
             if (field.equals(fields[i].getName())){
@@ -52,6 +54,8 @@ public class DataEntry {
         return false;
     }
 
+    // get the value from a DataField by passing in the name of the requested field
+    // return value of field or and empty string if field is not in DataEntry
     public String getFieldValue(String field){
         for (int i = 0; i < fields.length && fields[i] != null; i++){
             if (field.equals(fields[i].getName())){

@@ -74,10 +74,10 @@ public class Database {
 
     public String toString(){
         String s = "";
-        for (int i = 0; i < categories.length; i++){
-            String category = categories[i];
+        for (int i = 0; i < categories.length; i++){ // loop through categories
+            String category = categories[i]; // get category name
             for (int j = category.length(); j <= 19; j++){
-                category += " ";
+                category += " "; // add extra spaces to even out spacing
             }
             s += category;
         }
@@ -98,30 +98,33 @@ public class Database {
                     val = displayedData[i].getTimeStamp(); // get time stamp
                 }
                 else if (displayedData[i].hasField(categories[j])){ // check if entry contain category as field
-                    val = displayedData[i].getFieldValue(categories[j]);
+                    val = displayedData[i].getFieldValue(categories[j]); // if entry contains field, get the value
                 }
                 else{
                     val = "";
                 }
                 for (int k = val.length(); k <= 20; k++){
-                    val += " ";
+                    val += " "; // add extra spaces to even out spacing
                 }
                 s += val;
             }
             s += "\n";
         }
-        return s;
+        return s; // return full displayed data in String format
     }
 
+    // clear display view by removing all elements from displayData array
     public void clearDisplayData(){
         displayedData = new DataEntry[numEntries];
         numDisplayed = 0;
     }
 
+    // add to displayData array by requesting an index from allData array to be added
     public void addToDisplayed(int index){
         displayedData[numDisplayed++] = allData[index];
     }
 
+    // reset view by adding all data entries back to displayData array
     public void resetView(){
         displayedData = allData;
         numDisplayed = numEntries;
