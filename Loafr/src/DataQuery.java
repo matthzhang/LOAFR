@@ -40,12 +40,6 @@ public abstract class DataQuery{
     }
 
 
-    // ABSTRACT METHODS ------------------------------------------------------------------------------------------------
-    public abstract int searchByComponent(Database data);
-    public abstract int searchByField(Database data);
-    public abstract int searchByTime(Database data);
-
-
 } // end of class  (other ideas below)
 
 

@@ -19,8 +19,8 @@ public class Demo {
                     System.out.println("File not Found. Please Try Again.");
                 }
             }
+            SearchQuery query;
             boolean fileWork = true;
-            DataQuery query = null; // controls all query operation (search only now, more to be added later)
             while (fileWork) { // loop while user is working with current file data
                 System.out.println(data); // print current data view
                 System.out.println("\n");

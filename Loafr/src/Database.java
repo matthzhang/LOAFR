@@ -75,21 +75,38 @@ public class Database {
     public String toString(){
         String s = "";
         for (int i = 0; i < categories.length; i++){
-            s += categories[i] + "\t\t";
+            String category = categories[i];
+            for (int j = category.length(); j <= 19; j++){
+                category += " ";
+            }
+            s += category;
         }
         s += "\n";
         for (int i = 0; i < numDisplayed; i++){
-            s += displayedData[i].getProduct() + "\t\t\t";
-            s += displayedData[i].getDate() + "\t\t";
-            s += displayedData[i].getComponent() + "\t\t";
-            s += displayedData[i].getTimeStamp() + "\t\t";
-            for (int j = 4; j < categories.length; j++){
-                if (displayedData[i].hasField(categories[j])){
-                    s += displayedData[i].getFieldValue(categories[j]) + "\t\t";
+            for (int j = 0; j < categories.length; j++){ // loop through each entry's categories
+                String val = "";
+                if (j == 0){
+                    val = displayedData[i].getProduct(); // get product name
+                }
+                else if (j == 1){
+                    val = displayedData[i].getDate(); // get date
+                }
+                else if (j == 2){
+                    val = displayedData[i].getComponent(); // get component
+                }
+                else if (j == 3){
+                    val = displayedData[i].getTimeStamp(); // get time stamp
+                }
+                else if (displayedData[i].hasField(categories[j])){ // check if entry contain category as field
+                    val = displayedData[i].getFieldValue(categories[j]);
                 }
                 else{
-                    s += "\t\t";
+                    val = "";
                 }
+                for (int k = val.length(); k <= 20; k++){
+                    val += " ";
+                }
+                s += val;
             }
             s += "\n";
         }
