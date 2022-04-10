@@ -37,6 +37,10 @@ public class DataEntry {
         return timeStamp;
     }
 
+    public int getNumFields(){
+        return numFields;
+    }
+
     // METHODS ---------------------------------------------------------------------------------------------------------
     public void addField(String name, String value){
         fields[numFields++] = new DataField(name, value);
@@ -63,5 +67,12 @@ public class DataEntry {
             }
         }
         return "";
+    }
+
+    public String getFieldValue(int index){
+        if (index >= numFields){
+            return "";
+        }
+        return fields[index].getValue();
     }
 }

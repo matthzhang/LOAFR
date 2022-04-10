@@ -130,4 +130,18 @@ public class Database {
         numDisplayed = numEntries;
     }
 
+    // create a string of a single DataEntry
+    public String getWholeEntry(int index){
+        String s = "";
+        s += allData[index].getProduct();
+        s += ", " + allData[index].getDate();
+        s += ", " + allData[index].getComponent();
+        s += ", " + allData[index].getTimeStamp();
+        int fields = allData[index].getNumFields();
+        for (int i = 0; i < fields; i++){
+            s += ", " + allData[index].getFieldValue(i);
+        }
+        return s;
+    }
+
 }
