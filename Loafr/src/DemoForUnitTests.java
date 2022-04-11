@@ -92,7 +92,44 @@ public class DemoForUnitTests {
 
 
 
+        // TESTS FOR DataEntry CLASS
 
+        // hasField() TEST1
+        // SETUP -- get a DataEntry's from DataEntry[] at index 3,7 and 12
+        // INPUT:  (sampleTestForUnitT1.csv file)
+        // DataEntry[3].hasField("heat-degree")
+        // DataEntry[7].hasField("alert-status")
+        // DataEntry[12].hasField("sugar-kg")
+        // EXPECTED OUTPUT:
+        //       // DataEntry[3].hasField("heat-degree") == true
+        //        // DataEntry[7].hasField("alert-status") == false
+        //        // DataEntry[12].hasField("sugar-kg") == true
+
+        // hasField() TEST2
+        // SETUP -- get a DataEntry's from DataEntry[] at index 3,7 and 12
+        // INPUT:  (sampleTestForUnitT1.csv file)
+        // DataEntry[3].getFieldValue("heat-degree")
+        // DataEntry[7].getFieldValue("alert-status")
+        // DataEntry[12].getFieldValue("sugar-kg")
+        // EXPECTED OUTPUT:
+        // DataEntry[3].getFieldValue("heat-degree") == 50.0
+        // DataEntry[7].getFieldValue("alert-status") == null
+        // DataEntry[12].getFieldValue("sugar-kg") == 70.0
+
+
+
+
+
+
+
+        // TESTS FOR DataField CLASS:
+        //
+        // DataField TEST1
+        // setup --> use constructor to create a dataField obj...
+        // INPUT: DataField dField = new DataField("myField", "80.1"); (sampleTestForUnitT1.csv file)
+        // EXPECTED OUTPUT:
+        // dField.getName() == myField
+        // dField.getValue() == 80.1
 
 
 
