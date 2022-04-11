@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Test {
 
     // FIELDS -----------------------------------------------------------------------------
@@ -30,5 +28,13 @@ public class Test {
 
     public void setTestID(int testID) {
         this.testID = testID;
+    }
+
+    public int getTestDurationInSeconds() {
+        return testDurationInSeconds;
+    }
+
+    public void setTestDurationInSeconds(int testDurationInSeconds) {
+        this.testDurationInSeconds = testDurationInSeconds;
     }
 }
