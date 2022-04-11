@@ -27,6 +27,10 @@ public class Database {
     public DataEntry getEntry(int index){
         return allData[index];
     }
+    
+    public Test getTestAtIndex(int i){
+        return listOfAllTestsInDatabase.get(i);
+    }
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     public void ReadFile(String filename) throws FileNotFoundException {
