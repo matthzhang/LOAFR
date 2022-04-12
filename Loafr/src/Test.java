@@ -14,7 +14,7 @@ public class Test {
 
 
     // SETTERS AND GETTERS ------------------------------------------------------------------
-    public void setNumEntriesInThisTest(int numEntriesInThisTest) {
+    public void setNumEntriesInThisTest(String numEntriesInThisTest) {
         this.numEntriesInThisTest = numEntriesInThisTest;
     }
 
