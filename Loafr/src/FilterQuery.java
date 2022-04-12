@@ -29,7 +29,7 @@ public class FilterQuery extends DataQuery {
         return results;
     }
 
-    public String[] filterByField(Database data) {
+    public String[] filterByField(String fName) {
         String[] results = {""};
         numMatches = results.length;
         return results;
