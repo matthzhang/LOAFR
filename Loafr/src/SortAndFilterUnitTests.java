@@ -1,35 +1,48 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class SortAndFilterUnitTests {
     public static void main(String[] args) {
+        
+        // THE SETUP:
+        Scanner s = new Scanner(System.in);
+        Database data = null;
+        boolean getFile = true;
+        try {
+            data = new Database("tests/sampleTestForUnitT1.csv"); // initialize database with file content
+            getFile = false;
+        } catch (FileNotFoundException e) {
+            System.out.println("File not Found. Please Try Again.");
+        }
 
-// TESTS FOR FilterQuery() class and SortQuery() class **********************************************************************************************
-
-        // testing FilterQuery()...testing basic filter functionality
-        // Test1: FilterQuery("time-stamp")
-        // INPUT: FilterQuery f = new FilterQuery() (sampleTestForUnitT1.csv file)
-        // FilterQuery("2.0")
-        // EXPECTED OUTPUT:
-        // The DataEntry list (within Database) should only have 3 entries in it (== size of 3)
-        // NOTE THIS TEST SHOULD FAIL!!
-
-        // testing SortQuery()...testing basic sort functionality
-        // Test1: SortQuery("time-stamp")
-        // INPUT: SortQuery s = new SortQuery() (sampleTestForUnitT1.csv file)
-        // sortAscending("time-stamp")
-        // EXPECTED OUTPUT:
-        // The first 3 dataEntries in the DataEntry list (within Database) should all have a time stamp of 0.0
-        // NOTE THIS TEST SHOULD FAIL!!
-
-        // testing SortQuery()...testing basic sort functionality
-        // Test2: SortQuery("time-stamp")
-        // INPUT: SortQuery s = new SortQuery() (sampleTestForUnitT1.csv file)
-        // sortDescending("time-stamp")
-        // EXPECTED OUTPUT:
-        // The first 3 dataEntries in the DataEntry list (within Database) should all have a time stamp of 2.0
-        // NOTE THIS TEST SHOULD FAIL!!
+        // FilterQuery TEST
+        FilterQuery fQuery = new FilterQuery();
+        fQuery.filterByField("time-stamp");
+        if(fQuery.getNumMatches() == 15){
+            System.out.println("TEST PASSED");
+        }
+        else{
+            System.out.println("TEST FAILED -- issue with FilterQuery");
+        }
 
 
+        // SortQuery TEST1
+        SortQuery sQuery = new SortQuery("HeartMonitor");
+        sQuery.sortAscending("time-stamp");
+        if(sQuery.getResultAtIndex(0).equalsIgnoreCase("0.0")){
+            System.out.println("TEST PASSED");
+        }else{
+            System.out.println("TEST FAILED -- issue with SortQuery");
+        }
 
-
+        // SortQuery TEST2
+        SortQuery sQuery2 = new SortQuery("ValveMonitor");
+        sQuery2.sortDescending("time-stamp");
+        if(sQuery2.getResultAtIndex(0).equalsIgnoreCase("2.0")){
+            System.out.println("TEST PASSED");
+        }else{
+            System.out.println("TEST FAILED -- issue with SortQuery");
+        }
 
 
     }
