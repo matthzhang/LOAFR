@@ -1,18 +1,49 @@
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class TestUnitTests {
 
 
     public static void main(String[] args) {
 
+        SearchQuery s =null;
+        Database data=null;
+        boolean getFile = true;
+        int check = 0;
+        try {
+            data = new Database("tests/sampleTestForUnitT1.csv"); // initialize database with file content
+            s = new SearchQuery("HeartMonitor");
+            getFile = false;
+        } catch (FileNotFoundException e) {
+            System.out.println("File not Found. Please Try Again.");
+            check = 1;
+        }
 
-        // TESTS FOR the Test class ***********************************************************************************************************
+        if(check == 0) {
+            String t1 = data.getTestAtIndex(0).getTestID();
+            String t2 = data.getTestAtIndex(0).getNumEntriesInThisTest();
+            String t3 = data.getTestAtIndex(0).getTestDurationInSeconds();
 
-        // testing if Test class holds all meta data of a testFile like intended
-        // Test1: getTestId() / getNumEntriesInThisTest() / getTestDurationInSeconds()
-        // INPUT: check the ret values of each of the 3 function calls above (sampleTestForUnitT1.csv file)
-        // EXPECTED OUTPUT:
-        // data.getTestAtIndex(0).getTestId() == 1
-        // data.getTestAtIndex(0).getNumEntriesInThisTest() == 15
-        // data.getTestAtIndex(0).getTestDurationInSeconds() == 2 // THIS SHOULD FAIL!!! bc we aren't capturing the test duration value
+
+            if (t1.equalsIgnoreCase("1")) {
+                System.out.println("TEST PASSED");
+            } else {
+                System.out.println("TEST FAILED - issue with Test class");
+            }
+
+            if (t2.equalsIgnoreCase("15")) {
+                System.out.println("TEST PASSED");
+            } else {
+                System.out.println("TEST FAILED - issue with Test class");
+            }
+
+            if (t3.equalsIgnoreCase("2")) {
+                System.out.println("TEST PASSED");
+            } else {
+                System.out.println("TEST FAILED - issue with Test class");
+            }
+        }
 
     }
 }
+
