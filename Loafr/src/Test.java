@@ -1,13 +1,13 @@
 public class Test {
 
     // FIELDS -----------------------------------------------------------------------------
-    private int testID;
-    private int numEntriesInThisTest;
-    private int testDurationInSeconds;
+    private String testID;
+    private String numEntriesInThisTest;
+    private String testDurationInSeconds;
 
 
     // CONSTRUCTOR(s) --------------------------------------------------------------
-    public Test(int id){
+    public Test(String id){
         testID = id;
     }
 
@@ -18,23 +18,23 @@ public class Test {
         this.numEntriesInThisTest = numEntriesInThisTest;
     }
 
-    public int getNumEntriesInThisTest() {
+    public String getNumEntriesInThisTest() {
         return numEntriesInThisTest;
     }
 
-    public int getTestID() {
+    public String getTestID() {
         return testID;
     }
 
-    public void setTestID(int testID) {
+    public void setTestID(String testID) {
         this.testID = testID;
     }
 
-    public int getTestDurationInSeconds() {
+    public String getTestDurationInSeconds() {
         return testDurationInSeconds;
     }
 
-    public void setTestDurationInSeconds(int testDurationInSeconds) {
+    public void setTestDurationInSeconds(String testDurationInSeconds) {
         this.testDurationInSeconds = testDurationInSeconds;
     }
 }
