@@ -13,7 +13,7 @@ public class DemoForUnitTests {
         Database data = null;
         boolean getFile = true;
         try {
-            data = new Database("tests/sampleTestForUnitT1.csv"); // initialize database with file content
+            data = new Database("tests\\sampleTestForUnitT1.csv"); // initialize database with file content
             getFile = false;
         } catch (FileNotFoundException e) {
             System.out.println("File not Found. Please Try Again.");
@@ -29,7 +29,7 @@ public class DemoForUnitTests {
 
         String entryStr = data.getEntry(0).getWholeEntry();
         String rowStr = "iMedPump, 1/25/20, system, 0.00, 100.0, 80.0, low";
-        if(entryStr.equals(rowStr)){
+        if(entryStr.trim().equals(rowStr.trim())){
             System.out.println("DATABASE TEST 2: SUCCESS");
         }
         else{
