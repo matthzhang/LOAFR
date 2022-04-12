@@ -78,7 +78,8 @@ public class Database {
         s.close(); // close file
         // create Test obj, assign it an ID, add it to the listOfTests
         int testIdValue = (listOfAllTestsInDatabase.size())+1;
-        listOfAllTestsInDatabase.add(new Test(testIdValue));
+        String idStr = String.valueOf(testIdValue);
+        listOfAllTestsInDatabase.add(new Test(idStr));
     }
 
     public String toString(){
