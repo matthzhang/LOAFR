@@ -9,7 +9,7 @@ public class SearchTest {
         Database data=null;
         boolean getFile = true;
         try {
-            data = new Database("\\tests\\sampleTestForUnitT1.csv"); // initialize database with file content   
+            data = new Database("tests/sampleTestForUnitT1.csv"); // initialize database with file content
             search=new SearchQuery("HeartMonitor");
             getFile = false;
         } catch (FileNotFoundException e) {

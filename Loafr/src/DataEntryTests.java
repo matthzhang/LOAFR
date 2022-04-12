@@ -5,7 +5,7 @@ public class DataEntryTests {
         Database data=null;
         boolean getFile = true;
         try {
-            data = new Database("\\tests\\sampleTestForUnitT1.csv"); // initialize database with file content   
+            data = new Database("tests/sampleTestForUnitT1.csv"); // initialize database with file content
             getFile = false;
         } catch (FileNotFoundException e) {
             System.out.println("File not Found. Please Try Again.");
