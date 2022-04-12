@@ -1,10 +1,14 @@
 public class FilterQuery extends DataQuery {
 
     // FIELDS ----------------------------------------------------------------------------------------------------------
-    private String[] filterCriteria;
+    private String[] filterCriteria = new String[5];
 
     // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public FilterQuery() {
+    }
+    
+    public FilterQuery(String criteria){
+        filterCriteria[0] = criteria;
     }
 
     // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
@@ -12,7 +16,7 @@ public class FilterQuery extends DataQuery {
         return filterCriteria;
     }
 
-    public void setSearchTarget(String f) {
+    public void setFilterCriteria(String f) {
         filterCriteria[0] = f;
     }
 
