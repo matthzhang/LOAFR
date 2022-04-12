@@ -21,6 +21,14 @@ public class FilterQuery extends DataQuery {
     public void setFilterCriteria(String f) {
         filterCriteria[0] = f;
     }
+    
+    public int getNumMatches() {
+        return numMatches;
+    }
+
+    public void setNumMatches(int numMatches) {
+        this.numMatches = numMatches;
+    }
 
 
     // METHODS ---------------------------------------------------------------------------------------------------------
