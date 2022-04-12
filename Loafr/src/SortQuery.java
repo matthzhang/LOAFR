@@ -18,6 +18,9 @@ public class SortQuery extends DataQuery{
     public void setSortTarget(String target){
         sortTarget = target;
     }
+    public String getResultAtIndex(int i){
+        return results[i];
+    }
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     public void sortAscending(String field){
