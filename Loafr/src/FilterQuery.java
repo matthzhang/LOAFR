@@ -2,6 +2,8 @@ public class FilterQuery extends DataQuery {
 
     // FIELDS ----------------------------------------------------------------------------------------------------------
     private String[] filterCriteria = new String[5];
+    private String[] results = new String[15];
+    private int numMatches;
 
     // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public FilterQuery() {
@@ -29,6 +31,7 @@ public class FilterQuery extends DataQuery {
 
     public String[] filterByField(Database data) {
         String[] results = {""};
+        numMatches = results.length;
         return results;
     }
 
