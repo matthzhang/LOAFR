@@ -1,9 +1,9 @@
 public class Test {
 
     // FIELDS -----------------------------------------------------------------------------
-    private String testID;
-    private String numEntriesInThisTest;
-    private String testDurationInSeconds;
+    private String testID = "";
+    private String numEntriesInThisTest = "";
+    private String testDurationInSeconds = "";
 
 
     // CONSTRUCTOR(s) --------------------------------------------------------------
