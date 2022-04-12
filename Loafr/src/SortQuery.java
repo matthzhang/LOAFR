@@ -24,11 +24,11 @@ public class SortQuery extends DataQuery{
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     public void sortAscending(String field){
-        results[0] = 5;
+        results[0] = "5";
     }
 
     public void sortDescending(String field){
-        results[0] = 10; 
+        results[0] = "10"; 
     }
 
 
