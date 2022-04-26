@@ -33,19 +33,56 @@ public class FilterQuery extends DataQuery {
 
     // METHODS ---------------------------------------------------------------------------------------------------------
     public String[] filterByComponent(Database data) {
-        String[] results = {""};
-        return results;
+        data.clearDisplayData(); // clear dataDisplay array in Database
+        int entries = data.getNumEntries();
+        String[] found = new String[entries];
+        int k = 0;
+        // for each entry in the Database allData array, check if DataEntry component matches filterCriteria
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i); // get DataEntry from Database
+            String component = entry.getComponent(); // get component of DataEntry
+            if (!filterCriteria[0].equals(component)){ // check if component matches filterCriteria
+                data.addToDisplayed(i); // if component doesn't match, add DataEntry index to Database displayData array
+                found[k] = entry.getWholeEntry();
+                k++;
+            }
+        }
+        return found; // return array of components with target removed
     }
 
-    public String[] filterByField(String fName) {
-        String[] results = {""};
-        numMatches = results.length;
-        return results;
+    public String[] filterByField(Database data) {
+        data.clearDisplayData(); // clear dataDisplay array in Database
+        int entries = data.getNumEntries();
+        String[] found = new String[entries];
+        int k = 0;
+        // for each entry in the Database allData array, check DataEntry contains filterCriteria field
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i); // get DataEntry from Database
+            if (!entry.hasField(filterCriteria[0])){ // check if DataEntry contains filterCriteria field
+                data.addToDisplayed(i); // if field does not matche, add DataEntry index to Database displayData array
+                found[k] = entry.getWholeEntry();
+                k++;
+            }
+        }
+        return found; // return array of components with target removed
     }
 
     public String[] filterByTime(Database data) {
-        String[] results = {""};
-        return results;
+        data.clearDisplayData(); // clear dataDisplay array in Database
+        int entries = data.getNumEntries();
+        String[] found = new String[entries];
+        int k = 0;
+        // for each entry in the Database allData array, check if DataEntry time stamp matches searchTarget
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i); // get DataEntry from Database
+            String time = entry.getTimeStamp(); // get time of DataEntry
+            if (!filterCriteria[0].equals(time)){ // check if time matches searchTarget
+                data.addToDisplayed(i); // if time does not match, add DataEntry index to Database displayData array
+                found[k] = entry.getWholeEntry();
+                k++;
+            }
+        }
+        return found; // return array of components with target removed
     }
 }
 
