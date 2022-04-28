@@ -134,6 +134,11 @@ public class Database {
         displayedData[numDisplayed++] = allData[index];
     }
 
+    // add to displayData array by requesting a DataEntry entry to be added
+    public void addToDisplayed(DataEntry entry){
+        displayedData[numDisplayed++] = entry;
+    }
+
     // reset view by adding all data entries back to displayData array
     public void resetView(){
         displayedData = allData;

@@ -19,12 +19,14 @@ public class Demo {
                     System.out.println("File not Found. Please Try Again.");
                 }
             }
-            SearchQuery query;
+            SearchQuery searchQuery;
+            SortQuery sortQuery;
+            MeanQuery meanQuery;
             boolean fileWork = true;
             while (fileWork) { // loop while user is working with current file data
                 System.out.println(data); // print current data view
                 System.out.println("\n");
-                System.out.print("Enter Operation (search, reset view, change file, quit): ");
+                System.out.print("Enter Operation (search, sort, filter, mean, reset view, change file, quit): ");
                 String operation = s.nextLine(); // get operation input from user
                 if (operation.equals("search")) { // if user would like to perform search operation
                     boolean searching = true;
@@ -39,8 +41,8 @@ public class Demo {
                             System.out.print("Enter Component: ");
                             String component = s.nextLine();
                             // send component to search
-                            query = new SearchQuery(component);
-                            int entriesFound = query.searchByComponent(data);
+                            searchQuery = new SearchQuery(component);
+                            int entriesFound = searchQuery.searchByComponent(data);
                             if (entriesFound == 0){
                                 System.out.println("No Entries Found");
                             }
@@ -54,8 +56,8 @@ public class Demo {
                             System.out.print("Enter Field: ");
                             String field = s.nextLine();
                             // send field to search
-                            query = new SearchQuery(field);
-                            int entriesFound = query.searchByField(data);
+                            searchQuery = new SearchQuery(field);
+                            int entriesFound = searchQuery.searchByField(data);
                             if (entriesFound == 0){
                                 System.out.println("No Entries Found");
                             }
@@ -69,8 +71,8 @@ public class Demo {
                             System.out.print("Enter Time (X.XX Fromat): ");
                             String time = s.nextLine();
                             // send field to search
-                            query = new SearchQuery(time);
-                            int entriesFound = query.searchByTime(data);
+                            searchQuery = new SearchQuery(time);
+                            int entriesFound = searchQuery.searchByTime(data);
                             if (entriesFound == 0){
                                 System.out.println("No Entries Found");
                             }
@@ -81,6 +83,47 @@ public class Demo {
                         else{
                             System.out.println("Unknown Search Criteria. Please Try Again.");
                         }
+                    }
+                }
+                else if (operation.equals("sort")){
+                    System.out.print("Enter Field You Would Like To Sort By: ");
+                    String field = s.nextLine();
+                    boolean sorting = true;
+                    while (sorting){
+                        System.out.println("How Would You Like To Sort: ascending or descending ");
+                        String dir = s.nextLine();
+                        if (dir.equals("ascending")){
+                            sorting = false;
+                            sortQuery = new SortQuery(field, dir); // set target field and direction for sort
+                            int entriesFound = sortQuery.sort(data);
+                            System.out.println("In the given field " + field + ", there are " + entriesFound
+                                    + " entries sorted in a ascending fashion in the table below.");
+                        }
+                        else if (dir.equals("descending")){
+                            sorting = false;
+                            sortQuery = new SortQuery(field, dir); // set target field and direction for sort
+                            int entriesFound = sortQuery.sort(data);
+                            System.out.println("In the given field " + field + ", there are " + entriesFound
+                                    + " entries sorted in a descending fashion in the table below.");
+                        }
+                        else{
+                            System.out.println("Unknown Sort Command. Please Try Again.");
+                        }
+                    }
+                }
+                else if (operation.equals("mean")){
+                    System.out.print("Which Field Would You Like To Find the Mean of? ");
+                    String field = s.nextLine();
+                    meanQuery = new MeanQuery(field);
+                    double result = meanQuery.findFieldMean(data);
+                    if (result == -1){
+                        System.out.println("Field Contain Non Numerical Values. Cannot Compute Mean.");
+                    }
+                    else if (result == 0){
+                        System.out.println("Field Does Not Exist In Current File.");
+                    }
+                    else{
+                        System.out.println("The " + field + " Field Has A Mean Of " + result + ".");
                     }
                 }
                 else if (operation.equals("reset view")){
