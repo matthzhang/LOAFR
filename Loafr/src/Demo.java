@@ -21,11 +21,12 @@ public class Demo {
             }
             SearchQuery searchQuery;
             SortQuery sortQuery;
+            MeanQuery meanQuery;
             boolean fileWork = true;
             while (fileWork) { // loop while user is working with current file data
                 System.out.println(data); // print current data view
                 System.out.println("\n");
-                System.out.print("Enter Operation (search, sort, reset view, change file, quit): ");
+                System.out.print("Enter Operation (search, sort, filter, mean, reset view, change file, quit): ");
                 String operation = s.nextLine(); // get operation input from user
                 if (operation.equals("search")) { // if user would like to perform search operation
                     boolean searching = true;
@@ -108,6 +109,21 @@ public class Demo {
                         else{
                             System.out.println("Unknown Sort Command. Please Try Again.");
                         }
+                    }
+                }
+                else if (operation.equals("mean")){
+                    System.out.print("Which Field Would You Like To Find the Mean of? ");
+                    String field = s.nextLine();
+                    meanQuery = new MeanQuery(field);
+                    double result = meanQuery.findFieldMean(data);
+                    if (result == -1){
+                        System.out.println("Field Contain Non Numerical Values. Cannot Compute Mean.");
+                    }
+                    else if (result == 0){
+                        System.out.println("Field Does Not Exist In Current File.");
+                    }
+                    else{
+                        System.out.println("The " + field + " Field Has A Mean Of " + result + ".");
                     }
                 }
                 else if (operation.equals("reset view")){
