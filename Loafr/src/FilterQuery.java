@@ -3,14 +3,17 @@ public class FilterQuery extends DataQuery {
     // FIELDS ----------------------------------------------------------------------------------------------------------
     private String[] filterCriteria = new String[5];
     private String[] results = new String[15];
-    private int numMatches;
+    private double lowerBound;
+    private double upperBound;
 
     // CONSTRUCTORS ----------------------------------------------------------------------------------------------------
     public FilterQuery() {
     }
     
-    public FilterQuery(String criteria){
+    public FilterQuery(String criteria, double low, double up){
         filterCriteria[0] = criteria;
+        lowerBound = low;
+        upperBound = up;
     }
 
     // SETTERS & GETTERS -----------------------------------------------------------------------------------------------
@@ -22,67 +25,116 @@ public class FilterQuery extends DataQuery {
         filterCriteria[0] = f;
     }
     
-    public int getNumMatches() {
-        return numMatches;
+    public double getLowerBound() {
+        return lowerBound;
     }
 
-    public void setNumMatches(int numMatches) {
-        this.numMatches = numMatches;
+    public double getUpperBound() {
+        return upperBound;
+    }
+
+    public void setLowerBound(double low) {
+        lowerBound = low;
+    }
+
+    public void setUpperBound(double high) {
+        upperBound = high;
     }
 
 
     // METHODS ---------------------------------------------------------------------------------------------------------
-    public String[] filterByComponent(Database data) {
+    public String[] filterByTimeStamp(Database data) {
         data.clearDisplayData(); // clear dataDisplay array in Database
         int entries = data.getNumEntries();
         String[] found = new String[entries];
         int k = 0;
-        // for each entry in the Database allData array, check if DataEntry component matches filterCriteria
+        double stamp = 0;
+        // for each entry in the Database allData array, check if DataEntry timestamp falls between bounds
         for (int i = 0; i < entries; i++){
             DataEntry entry = data.getEntry(i); // get DataEntry from Database
-            String component = entry.getComponent(); // get component of DataEntry
-            if (!filterCriteria[0].equals(component)){ // check if component matches filterCriteria
+            stamp = Double.parseDouble(entry.getTimeStamp()); // get timestamp of DataEntry
+            if (stamp >= lowerBound && stamp <= upperBound){ // check if component matches filterCriteria
                 data.addToDisplayed(i); // if component doesn't match, add DataEntry index to Database displayData array
                 found[k] = entry.getWholeEntry();
                 k++;
             }
         }
-        return found; // return array of components with target removed
+        return found; // return array of components with variables in bould
     }
 
-    public String[] filterByField(Database data) {
+    public String[] filterByHeat(Database data) {
         data.clearDisplayData(); // clear dataDisplay array in Database
         int entries = data.getNumEntries();
         String[] found = new String[entries];
         int k = 0;
-        // for each entry in the Database allData array, check DataEntry contains filterCriteria field
+        double pumpPercent = 0;
+        
+        // for each entry in the Database allData array, check if DataEntry timestamp falls between bounds
         for (int i = 0; i < entries; i++){
             DataEntry entry = data.getEntry(i); // get DataEntry from Database
-            if (!entry.hasField(filterCriteria[0])){ // check if DataEntry contains filterCriteria field
-                data.addToDisplayed(i); // if field does not matche, add DataEntry index to Database displayData array
+            if(entry.hasField("insulin_%")){
+                pumpPercent = Double.parseDouble(entry.getFieldValue("insulin_%"));
+            }
+            else{
+                continue;
+            }
+            if (pumpPercent >= lowerBound && pumpPercent <= upperBound){ // check if component matches filterCriteria
+                data.addToDisplayed(i); // if component is in bound, add DataEntry index to Database displayData array
                 found[k] = entry.getWholeEntry();
                 k++;
             }
         }
-        return found; // return array of components with target removed
+        return found; // return array of components with variables in bould
     }
 
-    public String[] filterByTime(Database data) {
+    public String[] filterBySugar(Database data) {
         data.clearDisplayData(); // clear dataDisplay array in Database
         int entries = data.getNumEntries();
         String[] found = new String[entries];
         int k = 0;
-        // for each entry in the Database allData array, check if DataEntry time stamp matches searchTarget
+        double sugar = 0;
+        
+        // for each entry in the Database allData array, check if DataEntry timestamp falls between bounds
         for (int i = 0; i < entries; i++){
             DataEntry entry = data.getEntry(i); // get DataEntry from Database
-            String time = entry.getTimeStamp(); // get time of DataEntry
-            if (!filterCriteria[0].equals(time)){ // check if time matches searchTarget
-                data.addToDisplayed(i); // if time does not match, add DataEntry index to Database displayData array
+            if(entry.hasField("sugar-kg")){
+                sugar = Double.parseDouble(entry.getFieldValue("sugar-kg"));
+            }
+            else{
+                continue;
+            }
+            if (sugar >= lowerBound && sugar <= upperBound){ // check if component matches filterCriteria
+                data.addToDisplayed(i); // if component is in bound, add DataEntry index to Database displayData array
                 found[k] = entry.getWholeEntry();
                 k++;
             }
         }
-        return found; // return array of components with target removed
+        return found; // return array of components with variables in bould
+    }
+
+    public String[] filterByGlucose(Database data) {
+        data.clearDisplayData(); // clear dataDisplay array in Database
+        int entries = data.getNumEntries();
+        String[] found = new String[entries];
+        int k = 0;
+        double glucose = 0;
+        
+        // for each entry in the Database allData array, check if DataEntry timestamp falls between bounds
+        for (int i = 0; i < entries; i++){
+            DataEntry entry = data.getEntry(i); // get DataEntry from Database
+            if(entry.hasField("glucose-mg")){
+                glucose = Double.parseDouble(entry.getFieldValue("glucose-mg"));
+            }
+            else{
+                continue;
+            }
+            if (glucose >= lowerBound && glucose <= upperBound){ // check if component matches filterCriteria
+                data.addToDisplayed(i); // if component is in bound, add DataEntry index to Database displayData array
+                found[k] = entry.getWholeEntry();
+                k++;
+            }
+        }
+        return found; // return array of components with variables in bould
     }
 }
 
