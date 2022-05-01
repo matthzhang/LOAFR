@@ -7,7 +7,7 @@ public class MeanTests {
         boolean getFile = true;
         SortQuery sort=new SortQuery("heat-degree", "ascending");
         try {
-            data = new Database("C:\\Users\\adise\\Documents\\projects\\loafr_team21\\Loafr\\src\\tests\\sampleTestForUnitT1.csv"); // initialize database with file content
+            data = new Database("tests/sampleTestForUnitT1.csv"); // initialize database with file content
             getFile = false;
         } catch (FileNotFoundException e) {
             System.out.println("File not Found. Please Try Again.");
