@@ -64,6 +64,7 @@ public class FilterQuery extends DataQuery {
     }
 
     public int filterByField(Database data) {
+        numOccurence = 0;
         data.clearDisplayData(); // clear dataDisplay array in Database
         int entries = data.getNumEntries();
         String[] found = new String[entries];
@@ -75,7 +76,7 @@ public class FilterQuery extends DataQuery {
             DataEntry entry = data.getEntry(i); // get DataEntry from Database
             if(entry.hasField(filterCriteria)){
                 try{
-                    pumpPercent = Double.parseDouble(entry.getFieldValue("insulin_%"));
+                    pumpPercent = Double.parseDouble(entry.getFieldValue(filterCriteria));
                 }
 
                 catch (Exception e){
