@@ -21,6 +21,7 @@ public class Demo {
             }
             SearchQuery searchQuery;
             SortQuery sortQuery;
+            FilterQuery filterQuery;
             MeanQuery meanQuery;
             boolean fileWork = true;
             while (fileWork) { // loop while user is working with current file data
@@ -108,6 +109,61 @@ public class Demo {
                         }
                         else{
                             System.out.println("Unknown Sort Command. Please Try Again.");
+                        }
+                    }
+                }
+                else if (operation.equals("filter")){
+                    boolean filtering = true;
+                    while (filtering){
+                        System.out.println("What Would You Like To Search By?\n" +
+                                "\t -field\n" +
+                                "\t -time stamp");
+                        String search = s.nextLine();
+                        if (search.equals("time stamp")){
+                            filtering = false;
+                            System.out.print("Enter Lower Bound: ");
+                            String lowString = s.nextLine();
+                            double low = Double.parseDouble(lowString);
+                            System.out.print("Enter Upper Bound: ");
+                            String upString = s.nextLine();
+                            double up = Double.parseDouble(upString);
+                            filterQuery = new FilterQuery(operation, low, up);
+                            int entriesFound = filterQuery.filterByTimeStamp(data);
+                            if (entriesFound == 0){
+                                System.out.println("no time stamp entries found withing the bounds of " + low + " and " + up + ".");
+                            }
+                            else{
+                                System.out.println("In the bounded time stamp, there are " + entriesFound
+                                        + " entries filtered within the bounds " + low + " and " + up + ".");
+                            }
+
+                        }
+                        else if(search.equals("field")){
+                            filtering = false;
+                            System.out.print("Enter Field: ");
+                            String field = s.nextLine();
+                            System.out.print("Enter Lower Bound: ");
+                            String lowString = s.nextLine();
+                            double low = Double.parseDouble(lowString);
+                            System.out.print("Enter Upper Bound: ");
+                            String upString = s.nextLine();
+                            double up = Double.parseDouble(upString);
+                            // send field to filter
+                            filterQuery = new FilterQuery(field, low, up);
+                            int entriesFound = filterQuery.filterByField(data);
+                            if (entriesFound == 0){
+                                System.out.println("no " + field + " field entries found withing the bounds of " + low + "and" + up + ".");
+                            }
+                            else if (entriesFound == -1){
+                                System.out.println(field + " field does not use numerical values");
+                            }
+                            else{
+                                System.out.println("In the given field " + field + ", there are " + entriesFound
+                                        + " entries filtered within the bounds " + low + " and " + up + ".");
+                            }
+                        }
+                        else{
+                            System.out.println("Unknown Search Criteria. Please Try Again.");
                         }
                     }
                 }

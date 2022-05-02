@@ -121,10 +121,10 @@ public class SortQuery extends DataQuery{
         populateResults(data); // populate results[] with field category
         mergeSort(0, resultEntries - 1); // sort the DataEntry
         if (sortDirection.equals("ascending")){
-            transferToDisplayAscending(data);
+            transferToDisplayAscending(data); // add to display in Ascending order
         }
         else{
-            transferToDisplayDescending(data);
+            transferToDisplayDescending(data); // add to display in Descending order
         }
         return resultEntries;
     }

@@ -44,11 +44,10 @@ public class FilterQuery extends DataQuery {
 
 
     // METHODS ---------------------------------------------------------------------------------------------------------
-    public String[] filterByTimeStamp(Database data) {
+    public int filterByTimeStamp(Database data) {
         numOccurence = 0;
         data.clearDisplayData(); // clear dataDisplay array in Database
         int entries = data.getNumEntries();
-        String[] found = new String[entries];
         int k = 0;
         double stamp = 0;
         // for each entry in the Database allData array, check if DataEntry timestamp falls between bounds
@@ -60,7 +59,7 @@ public class FilterQuery extends DataQuery {
                 numOccurence++;
             }
         }
-        return found; // return array of components with variables in bould
+        return numOccurence;
     }
 
     public int filterByField(Database data) {
@@ -78,9 +77,7 @@ public class FilterQuery extends DataQuery {
                 try{
                     pumpPercent = Double.parseDouble(entry.getFieldValue(filterCriteria));
                 }
-
                 catch (Exception e){
-                    System.out.println("Error, cannot filter " + filterCriteria);
                     return -1;
                 }
             }
